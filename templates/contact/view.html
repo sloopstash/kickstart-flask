@@ -1,0 +1,46 @@
+{% extends 'account/view.html' %}
+{% block subcontent %}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <h5>
+        <span class="left">Contacts</span>
+        <span class="right blue-text"><a href="/contact/create"><i class="material-icons">add</i>Add</a></span>
+      </h5>
+    </div>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="section">
+  <div class="row">
+    <div class="col s12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="/contact/update">Alvin</a></td>
+            <td>alvin@gmail.com</td>
+            <td>05-09-2018 20:04:18</td>
+          </tr>
+          <tr>
+            <td><a href="/contact/update">Alan</a></td>
+            <td>alan@gmail.com</td>
+            <td>05-09-2018 20:04:18</td>
+          </tr>
+          <tr>
+            <td><a href="/contact/update">Jonathan</a></td>
+            <td>jonathan@gmail.com</td>
+            <td>05-09-2018 20:04:18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

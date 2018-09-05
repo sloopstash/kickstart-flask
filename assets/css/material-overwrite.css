@@ -1,0 +1,15 @@
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 95%;
+  }
+}
+.side-nav {
+  top:70px;
+  transform: translateX(0px) !important;
+}
+.side-nav.fixed {
+  left: inherit;
+  width: inherit;
+  height: 100%;
+  z-index: 996;
+}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="navbar-fixed">
+  <nav class="blue">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="/dashboard" class="brand-logo">crm</a>
+      </div>
+    </div>
+  </nav>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m6 offset-m6 l8 offset-l2">
+        <h5>Your Accounts</h5>
+        <div class="divider"></div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Organization</th>
+              <th>Email</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="/account/view">Alvin</a></td>
+              <td>alvin@gmail.com</td>
+              <td>05-09-2018 20:04:18</td>
+            </tr>
+            <tr>
+              <td><a href="/account/view">Alan</a></td>
+              <td>alan@gmail.com</td>
+              <td>05-09-2018 20:04:18</td>
+            </tr>
+            <tr>
+              <td><a href="/account/view">Jonathan</a></td>
+              <td>jonathan@gmail.com</td>
+              <td>05-09-2018 20:04:18</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>  
+    </div>
+  </div>
+</div>
+<div class="fixed-action-btn">
+  <a id="menu" class="btn-floating btn-large cyan" href="/account/create"><i class="large material-icons">add</i></a>
+  <div class="tap-target cyan white-text" data-activates="menu">
+    <div class="tap-target-content">
+      <h5>Account</h5>
+      <p>Create a new account.</p>
+    </div>
+  </div> 
+</div>
+{% endblock %}

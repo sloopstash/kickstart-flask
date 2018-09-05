@@ -1,0 +1,12 @@
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 491-831-129
+127.0.0.1 - - [05/Sep/2018 14:48:10] "GET / HTTP/1.1" 404 -
+100.1.1.10 - - [05/Sep/2018 14:49:26] "GET / HTTP/1.1" 404 -
+100.1.1.10 - - [05/Sep/2018 14:49:32] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [05/Sep/2018 14:50:51] "HEAD /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [05/Sep/2018 14:50:57] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [05/Sep/2018 14:51:01] "GET /account/update HTTP/1.1" 200 -
+127.0.0.1 - - [05/Sep/2018 14:51:10] "GET /account/create HTTP/1.1" 200 -
+127.0.0.1 - - [05/Sep/2018 14:53:03] "GET /dashboard HTTP/1.1" 200 -

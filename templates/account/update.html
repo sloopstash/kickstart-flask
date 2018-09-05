@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="navbar-fixed">
+  <nav class="blue">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="/dashboard" class="brand-logo"><i class="material-icons">keyboard_backspace</i>Dashboard</a>
+      </div>
+    </div>
+  </nav>
+</div>
+{% endblock %}
+{% block content %}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col m8 offset-m2 l6 offset-l3 s12">
+        <form class="col s12" action="/account/update" method="POST">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="firstname" type="text" name="firstname" class="validate">
+              <label for="firstname">First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="lastname" type="text" name="lastname" class="validate">
+              <label for="lastname">Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="organization" type="text" name="organization" class="validate">
+              <label for="organization">Organization</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" name="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="phone" type="text" name="phone" class="validate">
+              <label for="phone">Phone</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <a class="waves-effect waves-light btn right" type="submit">Update Account</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
