@@ -13,8 +13,6 @@ sys.path.append('core')
 
 # import custom modules.
 from database import redis
-from common import text_validate
-from contact import contact
 from config import redis_conf
 
 # intialize flask app.
@@ -43,21 +41,6 @@ def home():
   for key,value in vars['accounts'].iteritems():
     vars['accounts'][key] = json.loads(value)
   return render_template('dashboard.html',vars=vars)
-  # vars = {}
-  # if request.method=='GET':
-  #   return render_template('ticket/create.html')
-  # elif request.method=='POST':
-  #   data = {}
-  #   data['subject'] = request.form['subject']
-  #   data['description'] = request.form['description']
-  #   id = redis_engine.incr('tc')
-  #   redis_engine.set('t:'+str(id),json.dumps(data))
-  #   vars['id'] = id
-  #   vars['data'] = json.loads(redis_engine.get('t:'+str(id)))
-  #   return render_template('ticket/view.html',vars=vars)
-  # else:
-  #   return render_template('error.html')  
-  return render_template('dashboard.html')
 
 @app.route('/account/create',methods=['GET','POST'])
 def account_create():
