@@ -14,14 +14,14 @@
 <div class="section">
   <div class="container">
     <div class="row">
-      <div class="col s4">
+      <div class="col s12 m4 l4">
         <ul id="slide-out" class="side-nav">
-          <li><a class="subheader">Organization Name</a></li>
-          <li {% if Active=='contacts'%} class="active" {%endif%}><a class="waves-effect" href="/contact/view">Contacts</a></li>
-          <li {% if Active=='leads'%} class="active" {%endif%}><a class="waves-effect" href="/lead/view">Leads</a></li>
+          <li><a class="subheader">{{vars['account']['organization']}}</a></li>
+          <li {% if Active=='contacts'%} class="active" {%endif%}><a class="waves-effect" href="/account/{{vars['account']['id']}}/contacts">Contacts</a></li>
+          <li {% if Active=='leads'%} class="active" {%endif%}><a class="waves-effect" href="/account/{{vars['account']['id']}}/leads">Leads</a></li>
         </ul>
       </div>
-      <div class="col s8">
+      <div class="col s12 m8 l8">
         {% block subcontent %}{% endblock %}
       </div>
     </div>

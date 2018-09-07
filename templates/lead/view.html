@@ -5,7 +5,7 @@
     <div class="row">
       <h5>
         <span class="left">Leads</span>
-        <span class="right blue-text"><a href="/lead/create"><i class="material-icons">add</i>Add</a></span>
+        <span class="right blue-text"><a href="/account/{{vars['account']['id']}}/lead/create"><i class="material-icons">add</i>Add</a></span>
       </h5>
     </div>
   </div>
@@ -22,21 +22,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><a href="/lead/update">Alvin</a></td>
-          <td>alvin@gmail.com</td>
-          <td>05-09-2018 20:04:18</td>
-        </tr>
-        <tr>
-          <td><a href="/lead/update">Alan</a></td>
-          <td>alan@gmail.com</td>
-          <td>05-09-2018 20:04:18</td>
-        </tr>
-        <tr>
-          <td><a href="/lead/update">Jonathan</a></td>
-          <td>jonathan@gmail.com</td>
-          <td>05-09-2018 20:04:18</td>
-        </tr>
+          {% for key,value in vars['leads'].iteritems() %}
+          <tr>
+            <td><a href="/account/{{vars['account']['id']}}/lead/{{key}}/update">{{value['email']}}</a></td>
+            <td>{{value['firstname']}}</td>
+            <td>{{value['lastname']}}</td>
+          </tr>
+          {% endfor %}         
       </tbody>
     </table>
   </div>

@@ -16,7 +16,7 @@ class redis(object):
     if 'instance' in redis._instances:
       return redis._instances['instance']
     else:
-      self.conf = redis_conf()
+      self.conf = redis_conf
       self.engine = Redis(connection_pool=ConnectionPool(
         host=self.conf['host'],
         port=self.conf['port'],

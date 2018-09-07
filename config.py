@@ -8,3 +8,5 @@ def redis_conf():
   conf = json.loads(conf)
   file.close()
   return conf
+
+redis_conf = redis_conf()

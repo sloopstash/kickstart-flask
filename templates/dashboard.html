@@ -23,24 +23,18 @@
               <th>Organization</th>
               <th>Email</th>
               <th>Created</th>
+              <th>Manage</th>
             </tr>
           </thead>
           <tbody>
+            {% for key,value in vars['accounts'].iteritems() %}
             <tr>
-              <td><a href="/account/view">Alvin</a></td>
-              <td>alvin@gmail.com</td>
-              <td>05-09-2018 20:04:18</td>
+              <td><a href="/account/{{key}}/view">{{value['organization']}}</a></td>
+              <td>{{value['email']}}</td>
+              <td>{{value['phone']}}</td>
+              <td><a href="/account/{{key}}/update"><i class="material-icons">edit</i></a></td>
             </tr>
-            <tr>
-              <td><a href="/account/view">Alan</a></td>
-              <td>alan@gmail.com</td>
-              <td>05-09-2018 20:04:18</td>
-            </tr>
-            <tr>
-              <td><a href="/account/view">Jonathan</a></td>
-              <td>jonathan@gmail.com</td>
-              <td>05-09-2018 20:04:18</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>  

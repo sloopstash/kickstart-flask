@@ -3,7 +3,7 @@
 <div class="section">
   <div class="container">
     <div class="row">
-      <a href="/lead/view"><h5><i class="material-icons">keyboard_backspace</i> Back</h5></a>
+      <a href="/account/{{vars['account']['id']}}/leads"><h5><i class="material-icons">keyboard_backspace</i> Back</h5></a>
     </div>
   </div>
 </div>
@@ -11,32 +11,32 @@
 <div class="section">
   <div class="row">
     <div class="col m8 offset-m1 l8 offset-l1 s12">
-      <form class="col s12" action="/lead/update" method="POST">
+      <form class="col s12" action="/account/{{vars['account']['id']}}/lead/{{vars['lead']['id']}}/update" method="POST">
         <div class="row">
           <div class="input-field col s6">
-            <input id="firstname" type="text" name="firstname" class="validate">
+            <input id="firstname" type="text" name="firstname" class="validate" value="{{vars['lead']['firstname']}}">
             <label for="firstname">First Name</label>
           </div>
           <div class="input-field col s6">
-            <input id="lastname" type="text" name="lastname" class="validate">
+            <input id="lastname" type="text" name="lastname" class="validate" value="{{vars['lead']['lastname']}}">
             <label for="lastname">Last Name</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" name="email" class="validate">
+            <input id="email" type="email" name="email" class="validate" value="{{vars['lead']['email']}}">
             <label for="email">Email</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="phone" type="text" name="phone" class="validate">
+            <input id="phone" type="text" name="phone" class="validate" value="{{vars['lead']['phone']}}">
             <label for="phone">Phone</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <a class="waves-effect waves-light btn right" type="submit">Update Lead</a>
+            <button class="waves-effect waves-light btn right" type="submit">Update Lead</button>
           </div>
         </div>
       </form>

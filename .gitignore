@@ -1,0 +1,5 @@
+*.pyc
+*.ini
+tmp/*
+log/*
+config/*
