@@ -1,17 +1,7 @@
-
-# import argparse
-
-# app = Flask(__name__)
-# app.config['ELASTIC_APM'] = {
-#    'SERVICE_NAME': 'Sample App',
-#    'SECRET_TOKEN': 'test123',
-# }
-# apm = ElasticAPM(app)
-
-
 # import community modules. 
 import sys
 import json
+from elasticapm.contrib.flask import ElasticAPM
 from flask import Flask,request,render_template
 from werkzeug.exceptions import NotFound,BadRequest
 import argparse
@@ -28,7 +18,22 @@ from contact import contact
 from config import redis_conf
 
 # intialize flask app.
-app = Flask('dws app',template_folder='templates')
+app = Flask('CRM App',template_folder='templates')
+
+app.config['ELASTIC_APM'] = {
+  # Set required service name. Allowed characters:
+  # a-z, A-Z, 0-9, -, _, and space
+  'SERVICE_NAME': 'CRM App',
+
+  # Use if APM Server requires a token
+  'SECRET_TOKEN': '',
+
+  # Set custom APM Server URL (default: http://localhost:8200)
+  'SERVER_URL': 'http://elk-apm:8200',
+  'DEBUG': True
+}
+
+apm = ElasticAPM(app,logging=True)
 
 # Home
 @app.route('/dashboard',methods=['GET'])
@@ -203,6 +208,6 @@ if __name__ == '__main__':
     parser.add_argument('--host','-H',default='0.0.0.0')
     args = parser.parse_args()
     print 'starting app'
-    app.run(debug=True,host=args.host,port=args.port)
+    app.run(debug=False,host=args.host,port=args.port)
   except KeyboardInterrupt:
     print 'stopping app'
