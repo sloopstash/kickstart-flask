@@ -22,13 +22,17 @@
         </tr>
       </thead>
       <tbody>
-          {% for key,value in vars['leads'].iteritems() %}
-          <tr>
-            <td><a href="/account/{{vars['account']['id']}}/lead/{{key}}/update">{{value['email']}}</a></td>
-            <td>{{value['firstname']}}</td>
-            <td>{{value['lastname']}}</td>
-          </tr>
-          {% endfor %}         
+          {% if vars['leads'] %}
+            {% for key,value in vars['leads'].iteritems() %}
+            <tr>
+              <td><a href="/account/{{vars['account']['id']}}/lead/{{key}}/update">{{value['email']}}</a></td>
+              <td>{{value['firstname']}}</td>
+              <td>{{value['lastname']}}</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr><td colspan="3" class="center">No data found.</td></tr>
+          {% endif %}
       </tbody>
     </table>
   </div>

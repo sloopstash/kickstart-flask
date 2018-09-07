@@ -4,6 +4,7 @@
   <nav style="background-color: #fb0;">
     <div class="container">
       <div class="nav-wrapper">
+        <a href="#" data-activates="slide-out" class="button-collapse hide-on-med-and-up"><i class="material-icons">menu</i></a>
         <a href="/dashboard" class="brand-logo"><i class="material-icons">keyboard_backspace</i>Dashboard</a>
       </div>
     </div>
@@ -14,15 +15,19 @@
 <div class="section">
   <div class="container">
     <div class="row">
-      <div class="col s12 m4 l4">
+      <div class="col s12 m2 l2">
         <ul id="slide-out" class="side-nav">
           <li><a class="subheader">{{vars['account']['organization']}}</a></li>
           <li {% if Active=='contacts'%} class="active" {%endif%}><a class="waves-effect" href="/account/{{vars['account']['id']}}/contacts">Contacts</a></li>
           <li {% if Active=='leads'%} class="active" {%endif%}><a class="waves-effect" href="/account/{{vars['account']['id']}}/leads">Leads</a></li>
         </ul>
       </div>
-      <div class="col s12 m8 l8">
-        {% block subcontent %}{% endblock %}
+      <div class="col s12 m8 offset-m1 l8 offset-l1">
+        {% block subcontent %}
+          <div class="blank-content">
+            <h5 class="center">Please select <a href="/account/{{vars['account']['id']}}/contacts">Contacts</a>/<a href="/account/{{vars['account']['id']}}/leads">Leads</a></h5>
+          </div>
+        {% endblock %}
       </div>
     </div>
   </div>

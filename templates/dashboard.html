@@ -14,7 +14,7 @@
 <div class="container">
   <div class="section">
     <div class="row">
-      <div class="col s12 m6 offset-m6 l8 offset-l2">
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
         <h5>Your Accounts</h5>
         <div class="divider"></div>
         <table class="table">
@@ -22,19 +22,23 @@
             <tr>
               <th>Organization</th>
               <th>Email</th>
-              <th>Created</th>
+              <th>Phone</th>
               <th>Manage</th>
             </tr>
           </thead>
           <tbody>
-            {% for key,value in vars['accounts'].iteritems() %}
-            <tr>
-              <td><a href="/account/{{key}}/view">{{value['organization']}}</a></td>
-              <td>{{value['email']}}</td>
-              <td>{{value['phone']}}</td>
-              <td><a href="/account/{{key}}/update"><i class="material-icons">edit</i></a></td>
-            </tr>
-            {% endfor %}
+            {% if vars['accounts'] %}
+              {% for key,value in vars['accounts'].iteritems() %}
+              <tr>
+                <td><a href="/account/{{key}}/view">{{value['organization']}}</a></td>
+                <td>{{value['email']}}</td>
+                <td>{{value['phone']}}</td>
+                <td><a href="/account/{{key}}/update"><i class="material-icons">edit</i></a></td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr><td colspan="4" class="center">No data found.</td></tr>
+            {% endif %}
           </tbody>
         </table>
       </div>  
@@ -46,7 +50,7 @@
   <div class="tap-target cyan white-text" data-activates="menu">
     <div class="tap-target-content">
       <h5>Account</h5>
-      <p>Create a new account.</p>
+      <p>Click here to create a new account.</p>
     </div>
   </div> 
 </div>
