@@ -57,7 +57,7 @@ def account_create():
     id = redis.engine.incr(redis_conf['key_prefix']['account_counter'])
     response = redis.engine.hset(redis_conf['key_prefix']['account'],id,json.dumps(data))
     if response:
-      return redirect('dashboard')
+      return redirect('/dashboard')
     else:
       vars['message'] = 'Failure'
       return render_template('account/create.html')
@@ -77,7 +77,7 @@ def account_update(id):
     data['email'] = request.form['email']
     data['phone'] = request.form['phone']
     response = redis.engine.hset(redis_conf['key_prefix']['account'],id,json.dumps(data))
-    return redirect('dashboard')
+    return redirect('/dashboard')
 
 @app.route('/account/<id>/view',methods=['GET'])
 def account_view(id):
