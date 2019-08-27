@@ -33,6 +33,11 @@ app.config['ELASTIC_APM'] = {
 
 apm = ElasticAPM(app,logging=True)
 
+# Health check
+@app.route('/health',methods=['GET'])
+def health():
+  return 'Healthy'
+
 # Home
 @app.route('/dashboard',methods=['GET'])
 def home():
