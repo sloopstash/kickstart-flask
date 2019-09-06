@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /opt/kickstart-flask/
+hooks:
+  BeforeInstall:
+    - location: script/deploy/setup.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: script/deploy/configure.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: script/deploy/start.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: script/deploy/stop.sh
+      timeout: 300
+      runas: root
