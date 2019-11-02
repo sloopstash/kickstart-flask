@@ -1,4 +1,4 @@
-flask==0.12.4
+flask==1.0
 redis==2.10.6
 elastic-apm[flask]==3.0.5
 pytest==4.6.5
