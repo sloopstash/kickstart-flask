@@ -13,7 +13,7 @@ sys.path.append('core')
 
 # import custom modules.
 from database import redis
-from config import redis_conf
+from config import redis_conf, app_conf
 
 # intialize flask app.
 app = Flask('CRM App',template_folder='templates')
@@ -42,6 +42,7 @@ def health():
 @app.route('/dashboard',methods=['GET'])
 def home():
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   vars['accounts'] = redis.engine.hgetall(redis_conf['key_prefix']['account'])
   for key,value in vars['accounts'].iteritems():
     vars['accounts'][key] = json.loads(value)
@@ -50,8 +51,9 @@ def home():
 @app.route('/account/create',methods=['GET','POST'])
 def account_create():
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   if request.method=='GET':
-    return render_template('account/create.html')
+    return render_template('account/create.html',vars=vars)
   elif request.method=='POST':
     data = {}
     data['firstname'] = request.form['firstname']
@@ -65,11 +67,12 @@ def account_create():
       return redirect('/dashboard')
     else:
       vars['message'] = 'Failure'
-      return render_template('account/create.html')
+      return render_template('account/create.html',vars=vars)
 
 @app.route('/account/<id>/update',methods=['GET','POST'])
 def account_update(id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],id))
     vars['account']['id'] = id
@@ -87,6 +90,7 @@ def account_update(id):
 @app.route('/account/<id>/view',methods=['GET'])
 def account_view(id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],id))
   vars['account']['id'] = id
   return render_template('account/view.html',vars=vars)
@@ -94,6 +98,7 @@ def account_view(id):
 @app.route('/account/<act_id>/contacts',methods=['GET'])
 def contact_view(act_id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
   vars['account']['id'] = act_id
   vars['contacts'] = redis.engine.hgetall(redis_conf['key_prefix']['contact']+':'+str(act_id))
@@ -104,6 +109,7 @@ def contact_view(act_id):
 @app.route('/account/<act_id>/contact/create',methods=['GET','POST'])
 def contact_create(act_id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
@@ -125,6 +131,7 @@ def contact_create(act_id):
 @app.route('/account/<act_id>/contact/<id>/update',methods=['GET','POST'])
 def contact_update(act_id,id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
@@ -143,6 +150,7 @@ def contact_update(act_id,id):
 @app.route('/account/<act_id>/leads',methods=['GET'])
 def lead_view(act_id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
   vars['account']['id'] = act_id
   vars['leads'] = redis.engine.hgetall(redis_conf['key_prefix']['lead']+':'+str(act_id))
@@ -153,6 +161,7 @@ def lead_view(act_id):
 @app.route('/account/<act_id>/lead/create',methods=['GET','POST'])
 def lead_create(act_id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
@@ -174,6 +183,7 @@ def lead_create(act_id):
 @app.route('/account/<act_id>/lead/<id>/update',methods=['GET','POST'])
 def lead_update(act_id,id):
   vars = {}
+  vars['static_endpoint'] = app_conf['static']['endpoint']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
