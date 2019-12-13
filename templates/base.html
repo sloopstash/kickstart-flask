@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link type="text/css" rel="stylesheet" href="{{vars['static_endpoint']}}assets/css/main.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="{{vars['static_endpoint']}}libraries/materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="{{vars['static_endpoint']}}assets/css/material-overwrite.css"  media="screen,projection"/>
+    {% if vars['environment']=='prd' %}
+    <link type="text/css" rel="stylesheet" href="{{vars['cdn']['static']['endpoint']}}/assets/css/main.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{vars['cdn']['static']['endpoint']}}/libraries/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{vars['cdn']['static']['endpoint']}}/assets/css/material-overwrite.css"  media="screen,projection"/>
+    {% else %}
+    <link type="text/css" rel="stylesheet" href="/assets/css/main.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/libraries/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/assets/css/material-overwrite.css"  media="screen,projection"/>
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
@@ -16,9 +22,14 @@
     </div>
     <div id="footer">
       {% block footer %}{% endblock %}
-    </div>      
-    <script type="text/javascript" src="{{vars['static_endpoint']}}libraries/jquery/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{{vars['static_endpoint']}}libraries/materialize/js/materialize.min.js"></script>
+    </div>
+    {% if vars['environment']=='prd' %}
+    <script type="text/javascript" src="{{vars['cdn']['static']['endpoint']}}/libraries/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{vars['cdn']['static']['endpoint']}}/libraries/materialize/js/materialize.min.js"></script>
+    {% else %}
+    <script type="text/javascript" src="/libraries/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/libraries/materialize/js/materialize.min.js"></script>
+    {% endif %}
     <script type="text/javascript">
       $('document').ready(function(){
         $('.tap-target').tapTarget('open');
