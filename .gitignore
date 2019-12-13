@@ -1,4 +1,3 @@
 *.pyc
-*.ini
 tmp/*
 log/*
