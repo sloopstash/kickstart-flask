@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Install required packages for app.
+# Install required packages for App.
 pip install -r /opt/app/requirements.txt
 
-# Add supervisor configuration for app.
+# Add Supervisor configuration for App.
 cp /opt/app/config/supervisor/app.ini /etc/supervisord.d/app.ini
 
 DEFAULT_REDIS_HOST="crm-redis"

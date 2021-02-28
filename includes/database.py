@@ -1,17 +1,17 @@
-# import community modules.
+# Import community modules.
 import json
 from redis import Redis,ConnectionPool
 
-# import custom modules.
+# Import custom modules.
 from config import redis_conf
 
-# redis connector.
+# Redis connector.
 class redis(object):
 
-  # list of instances created by this class.
+  # List of instances created by this class.
   _instances = dict()
  
-  # constructor.
+  # Constructor.
   def __new__(self):
     if 'instance' in redis._instances:
       return redis._instances['instance']
@@ -25,7 +25,7 @@ class redis(object):
       ))
       return super(redis,self).__new__(self)
 
-  # initializer.
+  # Initializer.
   def __init__(self):
     redis._instances['instance'] = self
 

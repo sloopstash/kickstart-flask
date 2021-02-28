@@ -1,4 +1,4 @@
-# import community modules. 
+# Import community modules. 
 import sys
 import json
 from elasticapm.contrib.flask import ElasticAPM
@@ -7,15 +7,15 @@ from werkzeug.exceptions import NotFound,BadRequest
 import argparse
 from flask import jsonify,render_template,redirect
 
-# append app specific python paths.
+# Append App specific Python paths.
 sys.path.append('includes')
 sys.path.append('core')
 
-# import custom modules.
+# Import custom modules.
 from database import redis
 from config import app_conf, redis_conf
 
-# intialize flask app.
+# Intialize App.
 app = Flask('CRM App',template_folder='templates')
 
 app.config['ELASTIC_APM'] = {

@@ -2,7 +2,7 @@
  * App functionalities.
  */
 
-// Global Namespace.
+// Global namespace.
 var App = App || {};
 
 (function($) {

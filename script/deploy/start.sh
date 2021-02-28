@@ -3,5 +3,5 @@
 # Update modified configuration if any.
 /usr/bin/supervisorctl update all
 
-# Restart all supervisor manged programs.
+# Restart all Supervisor manged programs.
 /usr/bin/supervisorctl restart all

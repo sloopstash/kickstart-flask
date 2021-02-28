@@ -1,14 +1,14 @@
-# import community modules. 
+# Import community modules. 
 import sys
 import pytest
 
-# append app specific python paths.
+# Append App specific Python paths.
 sys.path.append('./')
 
-# import custom modules
+# Import custom modules.
 from init import app
 
-# Initialize the application test client.
+# Initialize the App test client.
 @pytest.fixture(scope='module')
 def client():
   app_client = app.test_client()

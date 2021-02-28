@@ -1,7 +1,7 @@
-# import community modules.
+# Import community modules.
 import json
 
-# get app configuration.
+# Get App configuration.
 def app_conf():
   file = open('config/app.conf','r')
   conf = file.read()
@@ -9,7 +9,7 @@ def app_conf():
   file.close()
   return conf
 
-# get redis configuration.
+# Get Redis configuration.
 def redis_conf():
   file = open('config/redis.conf','r')
   conf = file.read()

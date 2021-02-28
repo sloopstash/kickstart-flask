@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# Stop all supervisor managed programs.
+# Stop all Supervisor managed programs.
 /usr/bin/supervisorctl stop all
