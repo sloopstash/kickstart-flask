@@ -23,7 +23,7 @@
     <div id="footer">
       {% block footer %}{% endblock %}
     </div>
-    {% if vars['environment']=='prd' %}
+    {% if vars['environment']=='prd' or vars['environment']=='stg' %}
     <script type="text/javascript" src="{{vars['cdn']['static']['endpoint']}}/libraries/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{{vars['cdn']['static']['endpoint']}}/libraries/materialize/js/materialize.min.js"></script>
     {% else %}
