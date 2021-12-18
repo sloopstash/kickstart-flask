@@ -21,7 +21,8 @@ class redis(object):
         host=self.conf['host'],
         port=self.conf['port'],
         max_connections=self.conf['max_connections'],
-        db=0
+        db=0,
+        decode_responses=True
       ))
       return super(redis,self).__new__(self)
 

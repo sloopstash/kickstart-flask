@@ -43,7 +43,7 @@ def home():
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
   vars['accounts'] = redis.engine.hgetall(redis_conf['key_prefix']['account'])
-  for key,value in vars['accounts'].iteritems():
+  for key,value in vars['accounts'].items():
     vars['accounts'][key] = json.loads(value)
   return render_template('dashboard.html',vars=vars)
 
@@ -105,7 +105,7 @@ def contact_view(act_id):
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
   vars['account']['id'] = act_id
   vars['contacts'] = redis.engine.hgetall(redis_conf['key_prefix']['contact']+':'+str(act_id))
-  for key,value in vars['contacts'].iteritems():
+  for key,value in vars['contacts'].items():
     vars['contacts'][key] = json.loads(value)
   return render_template('contact/view.html',Active='contacts',vars=vars)
 
@@ -160,7 +160,7 @@ def lead_view(act_id):
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
   vars['account']['id'] = act_id
   vars['leads'] = redis.engine.hgetall(redis_conf['key_prefix']['lead']+':'+str(act_id))
-  for key,value in vars['leads'].iteritems():
+  for key,value in vars['leads'].items():
     vars['leads'][key] = json.loads(value)  
   return render_template('lead/view.html',Active='leads',vars=vars)
 
@@ -213,7 +213,7 @@ if __name__ == '__main__':
     parser.add_argument('--port','-P',type=int,default=5000)
     parser.add_argument('--host','-H',default='0.0.0.0')
     args = parser.parse_args()
-    print 'starting app'
+    print('starting app')
     app.run(debug=False,host=args.host,port=args.port)
   except KeyboardInterrupt:
-    print 'stopping app'
+    print('stopping app')

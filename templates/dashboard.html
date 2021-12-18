@@ -28,7 +28,7 @@
           </thead>
           <tbody>
             {% if vars['accounts'] %}
-              {% for key,value in vars['accounts'].iteritems() %}
+              {% for key,value in vars['accounts'].items() %}
               <tr>
                 <td><a href="/account/{{key}}/view">{{value['organization']}}</a></td>
                 <td>{{value['email']}}</td>

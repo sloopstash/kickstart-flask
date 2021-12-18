@@ -24,7 +24,7 @@
         </thead>
         <tbody>
           {% if vars['contacts'] %}
-            {% for key,value in vars['contacts'].iteritems() %}
+            {% for key,value in vars['contacts'].items() %}
             <tr>
               <td><a href="/account/{{vars['account']['id']}}/contact/{{key}}/update">{{value['email']}}</a></td>
               <td>{{value['firstname']}}</td>
