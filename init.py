@@ -1,5 +1,4 @@
-# Import community modules. 
-import os
+# Import community modules.
 import sys
 import json
 from elasticapm.contrib.flask import ElasticAPM
@@ -43,8 +42,6 @@ def home():
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   vars['accounts'] = redis.engine.hgetall(redis_conf['key_prefix']['account'])
   for key,value in vars['accounts'].items():
     vars['accounts'][key] = json.loads(value)
@@ -55,8 +52,6 @@ def account_create():
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   if request.method=='GET':
     return render_template('account/create.html',vars=vars)
   elif request.method=='POST':
@@ -79,8 +74,6 @@ def account_update(id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],id))
     vars['account']['id'] = id
@@ -100,8 +93,6 @@ def account_view(id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],id))
   vars['account']['id'] = id
   return render_template('account/view.html',vars=vars)
@@ -111,8 +102,6 @@ def contact_view(act_id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
   vars['account']['id'] = act_id
   vars['contacts'] = redis.engine.hgetall(redis_conf['key_prefix']['contact']+':'+str(act_id))
@@ -125,8 +114,6 @@ def contact_create(act_id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
@@ -150,8 +137,6 @@ def contact_update(act_id,id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
@@ -172,8 +157,6 @@ def lead_view(act_id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
   vars['account']['id'] = act_id
   vars['leads'] = redis.engine.hgetall(redis_conf['key_prefix']['lead']+':'+str(act_id))
@@ -186,8 +169,6 @@ def lead_create(act_id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
@@ -211,8 +192,6 @@ def lead_update(act_id,id):
   vars = {}
   vars['environment'] = app_conf['environment']
   vars['cdn'] = app_conf['cdn']
-  if os.environ['STATIC_ENDPOINT']:
-    vars['cdn']['static']['endpoint'] = os.environ['STATIC_ENDPOINT']
   if request.method=='GET':
     vars['account'] = json.loads(redis.engine.hget(redis_conf['key_prefix']['account'],act_id))
     vars['account']['id'] = act_id
