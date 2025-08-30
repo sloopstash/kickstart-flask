@@ -28,6 +28,9 @@
             </span> Customers
           </h2>
         </div>
+        <div style="text-align: left; width: 80%; margin-left: 20px;">
+     <h1>Welcome, {{ var.user.username }}!</h1>
+   </div>
         <div class="block-menu right">
           <a class="btn-small green darken-1 right" href="/customer/create">Create customer</a>
         </div>
@@ -62,6 +65,45 @@
         }
       ]
     });
+
+    $(document).ready(function() {
+    $(document).on('click', '.delete-customer', function() {
+      var customerId = $(this).data('id');  
+
+      
+      if (confirm('Are you sure you want to delete this customer?')) {
+       
+        deleteCustomer(customerId);
+      }
+    });
+});
+
+function deleteCustomer(customerId) {
+    $.ajax({
+        type: "POST",
+        url: "/customer/" + customerId + "/delete",
+        data: {
+            _method: 'DELETE'  
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.status === "success") {
+                alert(response.message);  
+                if (response.refresh) {
+                    location.reload();  
+                } else {
+                    $('#customer_' + customerId).remove();  
+                }
+            } else {
+                alert(response.message);  
+            }
+        },
+        error: function(xhr, status, error) {
+            alert("An error occurred while deleting the customer.");
+        }
+    });
+}
+
   });
 </script>
 {% endblock %}

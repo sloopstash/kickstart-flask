@@ -20,13 +20,14 @@ class customer(object):
     self.redis = redis
 
   # Create customer.
-  def create(self,data):
+  def create(self, data, user_id):
     try:
-      id = self.redis.engine.incr(
+      customer_id = self.redis.engine.incr(
         self.redis.conf['key_prefix']['customer']['counter']
       )
+      data['user_id'] = user_id  
       self.redis.engine.hset(
-        self.redis.conf['key_prefix']['customer']['main'],id,json.dumps(data)
+        self.redis.conf['key_prefix']['customer']['main'], customer_id, json.dumps(data)
       )
     except Exception as error:
       return False
@@ -34,16 +35,22 @@ class customer(object):
       return True
 
   # Update customer.
-  def update(self,data):
+  def update(self, data):
     try:
-      id = data['customer_id']
-      self.redis.engine.hset(
-        self.redis.conf['key_prefix']['customer']['main'],id,json.dumps(data)
-      )
+      customer_id = data['customer_id']
+      existing_customer = self.redis.engine.hget(self.redis.conf['key_prefix']['customer']['main'], customer_id)   
+      if existing_customer:
+        current_data = json.loads(existing_customer)
+        current_data.update(data)  
+        self.redis.engine.hset(self.redis.conf['key_prefix']['customer']['main'], customer_id, json.dumps(current_data))
+        return True
+      else:
+        print("Customer with ID {} not found!".format(customer_id))
+        return False
     except Exception as error:
+      print("Error updating customer: {}".format(error))
       return False
-    else:
-      return True
+
 
   # Get customer.
   def get(self,id):
@@ -81,3 +88,26 @@ class customer(object):
       item.update(json.loads(value))
       items.append(item)
     return items
+  
+  # List for user.
+  def list_for_user(self, user_id, **kwargs):
+    data = self.redis.engine.hgetall(self.redis.conf['key_prefix']['customer']['main'])
+    items = []
+    for key, value in data.items():
+      customer_data = json.loads(value)
+      if 'user_id' in customer_data and customer_data['user_id'] == user_id:
+        item = {'id': key}
+        item.update(customer_data)
+        items.append(item)
+    print("Items returned by list_for_user:", items) 
+    return items
+
+  # Delete customer.
+  def delete(self, customer_id):
+    customer_key = self.redis.conf['key_prefix']['customer']['main']
+    if self.redis.engine.hexists(customer_key, customer_id):
+      self.redis.engine.hdel(customer_key, customer_id)
+      return True
+    else:
+      print("Customer {} does not exist.".format(customer_id))  
+      return False

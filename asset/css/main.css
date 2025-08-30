@@ -143,3 +143,26 @@ strong,table thead th {
 #footer p {
   margin:0px;
 }
+/* Ensure the form is displayed inline */
+form {
+  display: inline;
+}
+
+/* Delete Button Styles */
+.delete-button {
+  color: red;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+}
+
+.delete-button i {
+  color: red;
+  font-size: 18px;
+}
+
+.delete-customer .icon {
+    color: red;
+}

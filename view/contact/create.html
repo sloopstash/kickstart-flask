@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% block title %}Create contact | SloopStash CRM{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col s1 m1 l1"></div>
+  <div class="col s15 m15 l15">
+    <div class="block">
+      <div class="block-header clearfix valign-wrapper">
+        <div class="block-title left">
+          <h2><i class="fa-regular fa-address-book"></i> Create contact</h2>
+        </div>
+        <div class="block-menu right"></div>
+      </div>
+      <div class="block-content">
+        <form class="form" method="post" autocomplete="off" action="/customer/{{ var['customer']['id'] }}/contact/create">
+          <div class="row">
+            <div class="input-field col s24 m24 l24">
+              <input id="firstname" name="firstname" type="text" data-length="50" maxlength="50" required>
+              <label for="firstname">First Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s24 m24 l24">
+              <input id="lastname" name="lastname" type="text" data-length="50" maxlength="50" required>
+              <label for="lastname">Last Name</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s24 m24 l24">
+              <textarea id="email" name="email" class="materialize-textarea" data-length="255" maxlength="255" required></textarea>
+              <label for="email">Email</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s24 m24 l24">
+              <input id="phonenumber" name="phonenumber" type="tel" data-length="50" maxlength="50" required>
+              <label for="phonenumber">Phonenumber</label>
+            </div>
+          </div>
+
+          
+          <div class="row">
+            <div class="input-field col s24 m24 l24">
+              <textarea id="description" name="description" class="materialize-textarea" data-length="255" maxlength="255" required></textarea>
+              <label for="description">Description</label>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn-small right">Save</button>
+          <a class="btn-flat right" href="/dashboard?tab=contacts">Cancel</a>
+        </form>
+      </div>
+      <div class="block-footer">
+        <div class="block-action right"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col s8 m8 l8"></div>
+</div>
+{% endblock %}

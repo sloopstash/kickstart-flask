@@ -10,7 +10,7 @@ var app = app || {};
 
 // Initialize JQuery.
 (function($) {
-
+  
   // Pager controller.
   app.pager = function(params) {
     this.name = params['name'];
@@ -166,6 +166,7 @@ var app = app || {};
       crossDomain:false
     }).done(function(data,status,request) {
       output = data;
+      console.log('Fetched contacts:', output);  // Log the fetched contacts
     });
     if(output!==null) {
       switch(output['status']) {
@@ -211,6 +212,7 @@ var app = app || {};
             thead.append(thead_row);
             $.each(this.items,function(index,item) {
               var tbody_row = `
+              
                 <tr>
                 <td>
                 <p><a href="/customer/`+item['id']+`/dashboard">`+item['name']+`</a></p>
@@ -223,12 +225,48 @@ var app = app || {};
                 <a href="/customer/`+item['id']+`/update">
                 <i class="fa-solid fa-pen-clip icon"></i>
                 </a>
+                <a href="javascript:void(0);" class="delete-customer" data-id="`+item['id']+`">
+                <i class="fa-solid fa-trash-can icon"></i>
+                </a>
                 </td>
                 </tr>
               `;
               tbody.append(tbody_row);
             });
             break;
+
+            case 'contact':
+            var thead_row = `
+              <tr>
+              <th>FirstName</th>
+              <th>LastName</th>
+              <th>Email</th>
+              <th>Phonenumber</th>
+              <th>Actions</th>
+              </tr>
+            `;
+            thead.append(thead_row);
+            console.log(this.items);  // Log the fetched contact data
+            $.each(this.items,function(index,item) {
+              var tbody_row = `
+                <tr>
+                <td>
+                <p><a href="/customer/`+item['customer_id']+`/dashboard">`+item['firstname']+ ' ' +item['lastname']+`</a></p>
+                <p class="paragraph">`+item['description']+`</p>
+                </td>
+                <td>`+item['email']+`</td>
+                <td>`+item['phonenumber']+`</td>
+                <td>
+                <a href="/customer/`+item['customer_id']+`/contact/`+item['contact_id']+`/update">
+                <i class="fa-solid fa-pen-clip icon"></i>
+                </a>
+                </td>
+                </tr>
+              `;
+              tbody.append(tbody_row);
+            });
+            break;
+
           default:
             break;
         }
