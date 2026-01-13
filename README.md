@@ -1,3 +1,7 @@
 # SloopStash CRM app
-Organize and manage your customers with a sample CRM (Customer Relationship Management) app written on the Flask framework in Python backed by the Redis database.
+
+
+## Get support
+- [Issues](https://github.com/sloopstash/sloopstash-crm-app/issues)
+- [Contact us](https://sloopstash.com/contact.html)
 
