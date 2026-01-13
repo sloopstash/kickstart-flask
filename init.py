@@ -16,6 +16,7 @@ sys.path.append('helper')
 # Import community modules.
 import argparse
 from flask import Flask,request
+from elasticapm.contrib.flask import ElasticAPM
 
 # Import custom modules.
 from controller.user import user_web_controller
@@ -86,8 +87,15 @@ def list_contacts():
 
 
 # Initialize Flask app.
-app = Flask('CRM app',template_folder='view')
+app = Flask('SloopStash CRM app',template_folder='view')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
+app.config['ELASTIC_APM'] = {
+  'SERVICE_NAME':'SloopStash CRM app',
+  'SECRET_TOKEN':'',
+  'SERVER_URL':'http://apm:8200',
+  'DEBUG':True
+}
+apm = ElasticAPM(app,logging=True)
 
 # App routes.
 app.add_url_rule('/health',view_func=health_web_controller)
@@ -106,9 +114,9 @@ if __name__=='__main__':
   parser.add_argument('--host',default='0.0.0.0')
   args = parser.parse_args()
   try:
-    print 'Starting CRM app service...'
+    print 'Starting SloopStash CRM app service...'
     app.run(debug=True,host=args.host,port=args.port)
   except KeyboardInterrupt:
-    print 'Stopping CRM app service...'
+    print 'Stopping SloopStash CRM app service...'
   finally:
     pass
